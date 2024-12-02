@@ -1,7 +1,9 @@
 import { ConnectDB } from "@/lib/config/db";
 import BlogModel from "@/lib/models/BlogModel";
+import exp from "constants";
 const { NextResponse } = require("next/server");
 import {writeFile} from 'fs/promises'
+const fs = require('fs');
 
 //this is to load the database by creating a new variable
 const LoadDB = async ()=>{
@@ -56,4 +58,13 @@ export async function POST(request){
   console.log("Blog Saved!");
 
   return NextResponse.json({success:true, msg:"Blog Added"});
+}
+
+//Create API end point to delete
+export async function DELETE(request){
+  const id = await request.nextUrl.searchParams.get('id');
+  const blog = await BlogModel.findById(id);
+  fs.unlink(`./public${blog.image}`, ()=>{});
+  await BlogModel.findByIdAndDelete(id);
+  return NextResponse.json({msg:"Blog Deleted"});
 }
