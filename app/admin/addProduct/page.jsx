@@ -12,7 +12,7 @@ const page = () => {
     description:"",
     categories:"",
     author:"Hashir",
-    authorImg: "/author_img.pmg"
+    authorImg: "/author_img.png"
   })
 
   const onChangeHandler = (event) => {
@@ -42,7 +42,7 @@ const page = () => {
         description:"",
         categories:"",
         author:"Hashir",
-        authorImg: "/author_img.pmg"
+        authorImg: "/author_img.png"
       });
     } else{
       toast.error("Error");
@@ -64,7 +64,7 @@ const page = () => {
         <p className='text-xl mt-4'>Categories</p>
         <select onChange={onChangeHandler} value={data.categories} name="categories" className='w-40 mt-4 px-4 py-3 border text-gray-500'>
         <option value="Select Category">SelectCategory</option>
-          <option value="Statup">Startup</option>
+          <option value="Startup">Startup</option>
           <option value="Technology">Technology</option>
           <option value="Lifestyle">Lifestyle</option>
         </select>
