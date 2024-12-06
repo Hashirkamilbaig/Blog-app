@@ -8,7 +8,7 @@ const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
 
   const fetchBlogs = async ()=>{
-    const response = await axios.get('https://blog-app-five-opal.vercel.app/api/blog');
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog`);
     setBlogs(response.data.blogs);
     console.log(response.data.blogs);
   }
