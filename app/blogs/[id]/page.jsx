@@ -41,23 +41,9 @@ const Page = ({params}) => {
     </div>
     <div className='mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10'>
       <Image src={data.image} width={1280} height={720} alt='' className='border border-white'/>
-      <h1 className='my-8 text-[26px] font-semibold'>Introduction:</h1>
-      <p>{data.description}</p>
-      <h3 className='my-5 text-[18px] font-semibold'>Step1: This is a dummy text which will be shown on the page for all the blog posts</h3>
-      <p className='my-3'>yeh fitoor mera laya mujhko hai tere kareeb</p>
-      <p className='my-3'>yeh fitoor mera laya mujhko hai tere kareeb</p>
+      <div className='blog-content' dangerouslySetInnerHTML={{__html:data.description}}>
 
-      <h3 className='my-5 text-[18px] font-semibold'>Step2: This is a dummy text which will be shown on the page for all the blog posts</h3>
-      <p className='my-3'>yeh fitoor mera laya mujhko hai tere kareeb</p>
-      <p className='my-3'>yeh fitoor mera laya mujhko hai tere kareeb</p>
-
-      <h3 className='my-5 text-[18px] font-semibold'>Step 3: This is a dummy text which will be shown on the page for all the blog posts</h3>
-      <p className='my-3'>yeh fitoor mera laya mujhko hai tere kareeb</p>
-      <p className='my-3'>yeh fitoor mera laya mujhko hai tere kareeb</p>
-
-      <h3 className='my-5 text-[18px] font-semibold'>Conclusion</h3>
-      <p className='my-3'>jo bhi main kahna chahoon barbaad kare alfaz mere</p>
-
+      </div>
       <div className='my-24'>
         <p className='text-black font-semibold my-4'>Share this article on social media</p>
         <div className='flex'>

@@ -28,7 +28,9 @@ const Headers = () => {
         <Link href="/">
         <Image src={assets.logo} width={180} alt='' className='w-[130px] sm:w-auto'/>
         </Link>
-        <button className='flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-solid border-black'> Get Started <Image src={assets.arrow} alt=''/></button>
+        <Link href={'/admin'}>
+          <button className='flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-solid border-black'> Admin Panel <Image src={assets.arrow} alt=''/></button>
+        </Link>
       </div>
       <div className='text-center my-8'>
         <h1 className='text-3xl sm:text-5xl font-medium'>

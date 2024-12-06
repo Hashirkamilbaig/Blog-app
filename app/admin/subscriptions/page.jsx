@@ -1,8 +1,36 @@
 'use client'
 import SubsTableItems from '@/components/AdminComponents/SubsTableItems'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Page = () => {
+
+  const [emails, setEmails] = useState([]);
+
+  const fetchEmails = async () => {
+    const response = await axios.get('/api/email');
+    setEmails(response.data.emails);
+  }
+
+  const deleteEmail = async(mongoId) => {
+    const response = await axios.delete('/api/email',{
+      params:{
+        id: mongoId
+      }
+    })
+    if(response.data.success) {
+      toast.success(response.data.msg);
+      fetchEmails();
+    }else{
+      toast.error("Error");
+    }
+  }
+
+  useEffect(()=>{
+    fetchEmails();
+  },[])
+
   return (
     <div className='flex-1 pt-5 px-5 sm:pt-12 sm:pl-16'>
       <h1>All subscriptions</h1>
@@ -22,7 +50,9 @@ const Page = () => {
             </tr>
           </thead>
           <tbody>
-            <SubsTableItems/>
+            {emails.map((item, index)=>{
+              return <SubsTableItems key={index} mongoId={item._id} deleteEmail={deleteEmail} email={item.email} date={item.date}/>
+            })}
           </tbody>
         </table>
       </div>
