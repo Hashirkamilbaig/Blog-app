@@ -24,30 +24,42 @@ const Page = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('title',data.title);
-    formData.append('description', data.description);
-    formData.append('categories', data.categories);
-    formData.append('author', data.author);
-    formData.append('authorImg', data.authorImg);
-    formData.append('image', image);
-
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog`, formData);
-
-    if(response.data.success){
-      toast.success(response.data.msg)
-      setImage(false);
-      setData({
-        title:"",
-        description:"",
-        categories:"",
-        author:"Hashir",
-        authorImg: "/author_img.png"
-      });
-    } else{
-      toast.error("Error");
+  
+    if (!image) {
+      toast.error("Please upload an image.");
+      return;
     }
-  }
+  
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("categories", data.categories);
+    formData.append("author", data.author);
+    formData.append("authorImg", data.authorImg);
+    formData.append("image", image); // Ensure this is a valid File object
+  
+    try {
+      const response = await axios.post("/api/blog", formData);
+  
+      if (response.data.success) {
+        toast.success(response.data.msg);
+        setImage(false);
+        setData({
+          title: "",
+          description: "",
+          categories: "",
+          author: "Hashir",
+          authorImg: "/author_img.png",
+        });
+      } else {
+        toast.error("Error uploading blog.");
+      }
+    } catch (error) {
+      toast.error("An error occurred.");
+      console.error(error);
+    }
+  };
+  
 
   return (
     <>
